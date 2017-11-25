@@ -2,8 +2,60 @@ let temp = [];
 let operand = 0;
 let operator;
 
+let numbers = [6,6];
+//sum should be 3;
+
+let result = add(numbers[0],numbers[1]);
+console.log(result);
+
+//functions for mathematical operations
+function add(a, b){
+  return a+b;
+}
+
+function subtract(a, b){
+  return a-b;
+}
+
+function multiply(a, b){
+  return a-b;
+}
+
+function divide(a, b){
+  return a-b;
+}
+
+function calculate(){
+
+  switch (input){
+    case '+':
+      result = add();
+      break;
+    case '-':
+      result = subtract();
+      break;
+    case '*':
+      result = multiply();
+      break;
+    case '/':
+      result = divide();
+      break;
+  }
+  //take numbers, use the correct function
+  //take users numbers
+  return result;
+}
+
+console.log((calculate(numbers)));
+
+function calculate2(firstNumber, firstNumber, operator){
+  return 
+}
+
+
 $('#equals').on("click", function(){
   //handle calculations
+
 });
 
 $('#restart').on("click", function(){
