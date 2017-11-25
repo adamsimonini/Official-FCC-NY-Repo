@@ -1,9 +1,9 @@
-let temp = [];
-let operand = 0;
-let operator;
+// let temp = [];
+// let operator;
+let operand;
 
 // Get two numbers
-let numbers = [1, '+', 2];
+let numbers = [3, '*', 5];
 
 function sum(a, b) {
   return a + b;
@@ -13,11 +13,11 @@ function subtract(a, b) {
   return a - b;
 }
 
-function multiply() {
+function multiply(a, b) {
   return a * b;
 }
 
-function divide() {
+function divide(a, b) {
   return a / b;
 }
 
@@ -28,41 +28,40 @@ function calculate(userInput) {
 }
 
 function calculate(userInput) {
-  //User input = [1, +, 2, -, 3];
-  let result = 0;
-  let a = '';
-  let b = '';
+  let tempNumbers = []; // [1, 2]
 
   // Take our numbers, run the correct functions
   userInput.forEach((input) => {
-    // If it is a number
-    switch(input) {
-      case "+":
-      result = sum(result, input);
-      break;
+    // If its a number, store it in tempNumbers
+    if(!isNaN(input)) {
+      tempNumbers.push(input);
+    } else {
+      operand = input;
+    }
+
+    if(tempNumbers.length == 2) {
+     switch(operand) {
+        case "+":
+        tempNumbers = [sum(tempNumbers[0], tempNumbers[1])];
+        break;
+        case "-":
+        tempNumbers = [subtract(tempNumbers[0], tempNumbers[1])]
+        break;
+        case "*":
+        tempNumbers = [multiply(tempNumbers[0], tempNumbers[1])]
+        break;
+        case "/":
+        tempNumbers = [divide(tempNumbers[0], tempNumbers[1])]
+        break;
+      }
     }
   });
 
   // Return the result
-  return result;
-}
-
-function calculate(userInput) {
-  // let operator =
+  return tempNumbers[0];
 }
 
 console.log(calculate(numbers));
-
-// case "-":
-// result = subtract(result, input);
-// break;
-// case "*":
-// result = multiply(result, input);
-// break;
-// case "/":
-// result = divide(result, input);
-// break;
-
 
 // Add them together
 // let result = sum(numbers[0], numbers[1]);
