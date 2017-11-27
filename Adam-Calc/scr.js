@@ -1,71 +1,33 @@
 let temp = [];
-let operand = 0;
-let operator;
+let operand1;
+let operand2;
+let operator = "+";
 
-let numbers = [6,6];
-//sum should be 3;
-
-let result = add(numbers[0],numbers[1]);
-console.log(result);
-
-//functions for mathematical operations
-function add(a, b){
-  return a+b;
+function calculate(first, second, op){
+  return eval(first + " " + op + " " + second);
 }
 
-function subtract(a, b){
-  return a-b;
-}
+$(document).ready(function(){
+  $('#equals').on("click", function(){
+    operand2 = temp.join('');
+    if(isNaN(operand1) || isNaN(operand2)){
+      $('#output').html("Equals? Really?? Aren't you missing something?");
+      return false;
+    }else{
+      console.log("operand 1 = " + operand1 + " operand 2 = " + operand2 + " operator = " + operator);
+      let calculated = calculate(operand1, operand2, operator);
+      $('#output').html(calculated);
+      operand1 = calculated;
+    }
+  });
 
-function multiply(a, b){
-  return a-b;
-}
-
-function divide(a, b){
-  return a-b;
-}
-
-function calculate(){
-
-  switch (input){
-    case '+':
-      result = add();
-      break;
-    case '-':
-      result = subtract();
-      break;
-    case '*':
-      result = multiply();
-      break;
-    case '/':
-      result = divide();
-      break;
-  }
-  //take numbers, use the correct function
-  //take users numbers
-  return result;
-}
-
-console.log((calculate(numbers)));
-
-function calculate2(firstNumber, firstNumber, operator){
-  return 
-}
-
-
-$('#equals').on("click", function(){
-  //handle calculations
-
+  $('#reset').on("click", function(){
+    temp = [];
+    operand1 = operand2 = undefined;
+    operator = undefined;
+    $('#output').html("OUTPUT FIELD");
+  });
 });
-
-$('#restart').on("click", function(){
-  //reset everything
-  temp = [];
-  operand = 0;
-  operator = undefined;
-  $('#output').html("");
-});
-
 
 function noDot(input){
   //check if our temp number already has a decimal
@@ -78,13 +40,11 @@ function noDot(input){
 function numberFound(input){
   //a number was selected! tack it on to temp, and change the output field to = temp
   temp.push(input);
-  console.log(temp);
   $('#output').html(temp);
 }
 
 function handleOperator(input){
-  operand = temp.join("");
-  console.log(operand);
+  isNaN(operand1) ? operand1 = temp.join("") : operand2 = temp.join("");
   temp = [];
   operator = input;
   $('#output').html(operator);
@@ -93,8 +53,8 @@ function handleOperator(input){
 function handleClick(id){
   if(!isNaN(id)){
     numberFound(id)
-  }else if(temp.length < 1 && operand == 0){
-    //reply to user inputting nonsense
+  }else if(temp.length < 1 && id != '.' && isNaN(operand1)){
+    //reply to user inputting operator before number
     $('#output').html("I'm sorry Dave, I'm afraid I can't compute nothing.");
   }else if(id != '.'){
     handleOperator(id)

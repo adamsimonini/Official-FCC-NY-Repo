@@ -1,3 +1,6 @@
+#titleOuter{
+  transform-style: preserve-3d;
+}
 .btn{
   opacity: 0.8;
 }
@@ -22,9 +25,15 @@ p{
 }
 .numButton{
   font-size: calc(14px + 1vw);
-  border: black solid 2px;
   min-width: calc(30px + 5vw);
   margin: 0 10px 0 0;
+  -webkit-box-shadow: -5px 3px 14px 0px rgba(50, 50, 50, 0.35);
+  -moz-box-shadow:    -5px 3px 14px 0px rgba(50, 50, 50, 0.35);
+  box-shadow:         -5px 3px 14px 0px rgba(50, 50, 50, 0.35);
+  border: 0;
+}
+.numButton:hover{
+  background-color: #c5bdbd;
 }
 h1{
   font-size: 5em;
